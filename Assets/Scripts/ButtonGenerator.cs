@@ -10,17 +10,22 @@ public class ButtonGenerator : MonoBehaviour
 
     List<ElevatorButton> buttons;
 
-    float ordinarySize = 1f;
+    float ordinarySize = 0.05f;
     // float inflatedSize = 2f;
 
     float animationSpeed = 0.2f; // 0 to 1f. Kind of a hack / change later.
+
+    // higher number: less height spread / lower number: more height spread
+    // e.g. 0.8 means we use cos^2(0.8 * x) for the height distribution
+    const float cos2frequency = 0.8f;
+    const float buttonOffset = 0.2f;
 
     void Start()
     {
         // Instantiate and initialize buttons
         buttons = new List<ElevatorButton>();
         for(int i = 0; i < num; i ++) {
-            ElevatorButton b = Instantiate(button, Vector3.zero, Quaternion.identity);
+            ElevatorButton b = Instantiate(button);
             b.SetFloor(i);
             b.transform.SetParent(transform);
             buttons.Add(b);
@@ -31,24 +36,25 @@ public class ButtonGenerator : MonoBehaviour
     {
         // Probably use the is dirty trick later...
         foreach (var b in buttons) {
-            int dy = 0;
+            float dy = 0;
             if (ElevatorButton.HoveredButton != null) {
                 dy = b.floorNumber - ElevatorButton.HoveredButton.floorNumber;
+                dy *= cos2frequency;
             }
 
             // Set scale
-            float s = ordinarySize;
+            float s = 1;
             if (ElevatorButton.HoveredButton != null) {
                 s += HeightFn(dy);
             }
-            b.transform.localScale = Vector3.Lerp(b.transform.localScale, Vector3.one * s, animationSpeed);
+            b.transform.localScale = Vector3.Lerp(b.transform.localScale, Vector3.one * s * ordinarySize, animationSpeed);
 
             // Set position
-            Vector3 pos = new Vector3(0, b.floorNumber * 1.2f, 0);
+            Vector3 pos = Vector3.forward * b.floorNumber * (1 + buttonOffset);
             if (ElevatorButton.HoveredButton != null) {
-                pos += new Vector3(0, DistFn(dy), 0);
+                pos += Vector3.forward * DistFn(dy);
             }
-            b.transform.position = Vector3.Lerp(b.transform.position, pos, animationSpeed);
+            b.transform.localPosition = Vector3.Lerp(b.transform.localPosition, pos * ordinarySize, animationSpeed);
         }
     }
 
