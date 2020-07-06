@@ -6,7 +6,7 @@ public class ButtonGenerator : MonoBehaviour
 {
 
     [SerializeField] ElevatorButton button;
-    int num = 5;
+    [SerializeField] int numFloors = 5;
 
     List<ElevatorButton> buttons;
 
@@ -24,9 +24,9 @@ public class ButtonGenerator : MonoBehaviour
     {
         // Instantiate and initialize buttons
         buttons = new List<ElevatorButton>();
-        for(int i = 0; i < num; i ++) {
+        for(int i = 0; i < numFloors; i ++) {
             ElevatorButton b = Instantiate(button);
-            b.SetFloor(i);
+            b.SetFloor(i + 1);
             b.transform.SetParent(transform);
             buttons.Add(b);
         }

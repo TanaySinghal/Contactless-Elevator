@@ -9,6 +9,10 @@ using UHFrameworkLite;
 public class ElevatorButton : MonoBehaviour
 {
     public int floorNumber;
+
+    // 1 to 9 in order
+    [SerializeField] List<GameObject> numberPrefabs;
+
     [SerializeField] InteractionButton interactionButton;
 
     [SerializeField, Range(0f, 1f)] float tactileIntensity = 1f;
@@ -27,6 +31,14 @@ public class ElevatorButton : MonoBehaviour
             tactileFrequency,
             tactileRadius
         );
+
+        if (floorNumber <= numberPrefabs.Count) {
+            GameObject numberGO = Instantiate(numberPrefabs[floorNumber - 1]);
+            numberGO.transform.SetParent(interactionButton.transform);
+            numberGO.transform.localPosition = Vector3.zero;
+            numberGO.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            numberGO.transform.localScale = Vector3.one;
+        }
     }
 
     void Update()
