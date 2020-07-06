@@ -16,12 +16,12 @@ namespace UHFrameworkLite.Demo
 {
     public class TPSFollow : MonoBehaviour
     {
-        [SerializeField, Range(0f, 1f)]
-        float intensity = 1f; // 0 to 1
-        [SerializeField, Range(1f, 500f)]
-        float frequency = 100f;
-        [SerializeField, Range(0.001f, 0.05f)]
-        float radius = 0.01f;
+        [Range(0f, 1f)]
+        public float intensity = 1f; // 0 to 1
+        [Range(1f, 500f)]
+        public float frequency = 100f;
+        [Range(0.001f, 0.05f)]
+        public float radius = 0.01f;
 
         TimePointStreamingEmitter _emitter;
         bool _firstTime = true;
@@ -61,6 +61,12 @@ namespace UHFrameworkLite.Demo
 
             // Update callback with updated circle
             _emitter.setEmissionCallback(MyEmitterCallback, circle);
+        }
+
+        void OnEnable() {
+            if (_emitter != null) {
+                _emitter.start();
+            }
         }
 
         // Ensure the emitter is stopped on exit

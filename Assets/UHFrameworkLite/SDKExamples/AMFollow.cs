@@ -12,10 +12,10 @@ namespace UHFrameworkLite.Demo
     public class AMFollow : MonoBehaviour
     {
         AmplitudeModulationEmitter _emitter;
-        [SerializeField, Range(0f, 1f)]
-        float intensity = 1f; // 0 to 1
-        [SerializeField, Range(1f, 500f)]
-        float frequency = 140f;
+        [Range(0f, 1f)]
+        public float intensity = 1f; // 0 to 1
+        [Range(1f, 500f)]
+        public float frequency = 140f;
 
         void Start()
         {
