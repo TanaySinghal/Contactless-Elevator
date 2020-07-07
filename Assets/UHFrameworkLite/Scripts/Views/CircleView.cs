@@ -45,6 +45,9 @@ namespace UHFrameworkLite
             {
                 transform.localPosition = tactileCircle.position.ToUnity();
 
+                // Align with haptic device orientation
+                transform.localRotation = Quaternion.identity;
+
                 float intensity = tactileCircle.intensity;
                 float radius = tactileCircle.radius;
                 if (radius != oldRadius || intensity != oldIntensity)

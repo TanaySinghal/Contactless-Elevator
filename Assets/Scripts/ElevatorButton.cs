@@ -53,7 +53,7 @@ public class ElevatorButton : MonoBehaviour
         }
 
         if (interactionButton.isPressed && PressedButton != this) {
-            circleSensation.position = transform.position.ToUH();
+            circleSensation.position = TactileRunner.Instance.transform.InverseTransformPoint(transform.position).ToUH();
             TactileRunner.Instance.AddShape(circleSensation);
             PressedButton = this;
         }

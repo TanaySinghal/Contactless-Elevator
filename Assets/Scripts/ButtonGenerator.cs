@@ -50,9 +50,9 @@ public class ButtonGenerator : MonoBehaviour
             b.transform.localScale = Vector3.Lerp(b.transform.localScale, Vector3.one * s * ordinarySize, animationSpeed);
 
             // Set position
-            Vector3 pos = Vector3.forward * b.floorNumber * (1 + buttonOffset);
+            Vector3 pos = Vector3.up * b.floorNumber * (1 + buttonOffset);
             if (ElevatorButton.HoveredButton != null) {
-                pos += Vector3.forward * DistFn(dy);
+                pos += Vector3.up * DistFn(dy);
             }
             b.transform.localPosition = Vector3.Lerp(b.transform.localPosition, pos * ordinarySize, animationSpeed);
         }
