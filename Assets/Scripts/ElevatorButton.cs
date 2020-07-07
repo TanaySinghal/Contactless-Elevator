@@ -24,6 +24,8 @@ public class ElevatorButton : MonoBehaviour
 
     TactileCircle circleSensation;
 
+    float brailleDistance = 0.07f; // distance from button in meters
+
     void Start() {
         circleSensation = new TactileCircle(
             Vector3.zero.ToUH(),
@@ -46,6 +48,10 @@ public class ElevatorButton : MonoBehaviour
         if (interactionButton.isPrimaryHovered && HoveredButton != this)
         {
             HoveredButton = this;
+
+            // Start playing braille
+            BrailleCharacter.Instance.transform.position = transform.position - transform.forward * brailleDistance;
+            BrailleCharacter.Instance.PlayBraille(floorNumber);
         }
         else if (!interactionButton.isPrimaryHovered && HoveredButton == this)
         {
@@ -53,6 +59,10 @@ public class ElevatorButton : MonoBehaviour
         }
 
         if (interactionButton.isPressed && PressedButton != this) {
+            // Stop playing braille
+            BrailleCharacter.Instance.StopBraille();
+
+            // Play button haptics
             circleSensation.position = TactileRunner.Instance.transform.InverseTransformPoint(transform.position).ToUH();
             TactileRunner.Instance.AddShape(circleSensation);
             PressedButton = this;

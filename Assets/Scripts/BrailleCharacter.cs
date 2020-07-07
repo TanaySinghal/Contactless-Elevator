@@ -4,10 +4,11 @@ using UnityEngine;
 
 using UHFrameworkLite;
 
-public class BrailleCharacter : MonoBehaviour
+public class BrailleCharacter : MonoBehaviourSingleton<BrailleCharacter>
 {
     // Must be in braille order
     [SerializeField] GameObject[] brailleDots;
+    [SerializeField] bool debugMode = false;
 
     float showTime = 0.2f;
     float pauseTime = 0.2f;
@@ -32,16 +33,11 @@ public class BrailleCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (var b in brailleDots) {
-            b.SetActive(false);
-        }
-        
         braillePlayer = null;
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log("Playing braille number: " + num_to_play);
+        if (debugMode && Input.GetKeyDown(KeyCode.Space)) {
             PlayBraille(num_to_play);
             num_to_play ++;
             if (num_to_play > 5) {
@@ -52,13 +48,8 @@ public class BrailleCharacter : MonoBehaviour
 
     // Only supports 1 to 5
     public void PlayBraille(int number) {
-        
         // Stop existing braille if any
-        if (braillePlayer != null) {
-            StopCoroutine(braillePlayer);
-        }
-
-        RemoveTactilePoint();
+        StopBraille();
 
         // Get appropriate number
         List<int> brailleSequence;
@@ -86,19 +77,28 @@ public class BrailleCharacter : MonoBehaviour
         StartCoroutine(braillePlayer);
     }
 
+    public void StopBraille() {
+        // Stop existing braille if any
+        if (braillePlayer != null) {
+            StopCoroutine(braillePlayer);
+        }
+
+        RemoveTactilePoint();
+    }
+
     IEnumerator PlayBrailleSequence(List<int> indices) {
         
         RemoveTactilePoint();
 
         foreach(var i in indices) {
             GameObject b = brailleDots[i];
-            // b.SetActive(true);
-            tactilePoint = new TactilePoint(b.transform.position.ToUH(), 1f, IdxToFrequency[i]);
+            // Get position of braille dot relative to tactile runner (our device) and play there 
+            Vector3 p = TactileRunner.Instance.transform.InverseTransformPoint(b.transform.position);
+            tactilePoint = new TactilePoint(p.ToUH(), 1f, IdxToFrequency[i]);
             TactileRunner.Instance.AddShape(tactilePoint);
 
             yield return new WaitForSeconds(showTime);
             RemoveTactilePoint();
-            // b.SetActive(false);
             yield return new WaitForSeconds(pauseTime);
         }
     }
