@@ -1,0 +1,26 @@
+Need to import:
+Assets -> Import Package -> Characters (get FPS Controller)
+___________________________________________________________________________
+(influence only on final render, does no requre for working elevator system)
+- Post Processing Stack 
+- Volumetric Light (https://github.com/SlightlyMad/VolumetricLights) <- Third Party Content, I am not responsible for the problems caused by this content!
+
+
+About Elevator System:
+- Elevator system can be used with your custom models.
+- Learn Demo_Scene ElevatorSystem(&Elevator_0 -> &Hall_Elevator_Frame_Stage1 &Elevator_Box -> &Elevator_ButtonPanel -> &Button_0) to understand how that is assigned
+- Scripting API in Elevator_CallMethodDemonstration.cs
+- Control Panel can be ease customized, learn 'Demo_Scene' or 'Demo_Scene 55stages_FPSIntegration_XboxControllerIntegration'
+
+How assign Xbox Controller to Unity FPS Prefab:
+- Watch How_to_Assign_Xbox_Controller_to_Unity_FPS_Prefab.png in the same folder (more about Xbox Controller: http://wiki.unity3d.com/index.php?title=Xbox360Controller#Buttons)
+
+Scene 'Demo_Scene 55stages_FPSIntegration_XboxControllerIntegration' have integrated button system with Raycast. Working with Keyboard-Mouse and Xbox Controller.
+Attach to any GO in Scene Component 'Elevator_ButtonReaction_UnityFPSControllerIntegration'.cs.
+How it work: Use unique name for button, attach Collider and watch 'Elevator_ButtonReaction_UnityFPSControllerIntegration' to add 'Action'!
+
+About calculation elevator level in motion. For detecting current level must be created hall doors gameobjects and assigned to 
+ElevatorSystem -> Elevator_[ID] -> Component 'Elevator_UnitContoller' -> 'Hall Door Controller' Array. Element 0 - detected as 1 floor!
+Hall door on empty stages can be disabled for optimization. Only Transform of them used by Elevator System(other Assigned Component require). 
+Learn 'Demo_Scene 55stages_FPSIntegration_XboxControllerIntegration'.
+
