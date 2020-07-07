@@ -83,4 +83,21 @@ namespace UHFrameworkLite
             return position + point;
         }
     };
+    
+
+    /// <summary>
+    /// This script contains logic for drawing a tactile point sensation.
+    /// </summary>
+    public class TactilePoint : TactileShape
+    {
+        public TactilePoint(Vector3 position, float intensity, float drawFrequency)
+            : base(position, intensity, drawFrequency)
+        {
+        }
+
+        public override Vector3 EvaluateAt(double seconds)
+        {
+            return position;
+        }
+    };
 }

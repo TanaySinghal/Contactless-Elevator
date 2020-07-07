@@ -52,3 +52,5 @@ MonoBehaviour:
     type: 3}
   lineViewPrefab: {fileID: 4964594830383944412, guid: 3dc0f6360b51f1b40a7c9eddf6c7a5ab,
     type: 3}
+  pointViewPrefab: {fileID: 5457272122782157190, guid: aa31125b1a65cd749bd5a12b67feb653,
+    type: 3}

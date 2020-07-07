@@ -49,7 +49,8 @@ namespace UHFrameworkLite
         // View prefabs
         [SerializeField] CircleView circleViewPrefab;
         [SerializeField] LineView lineViewPrefab;
-
+        [SerializeField] PointView pointViewPrefab;
+        
         void Awake()
         {
             // Initialize shape list
@@ -178,6 +179,10 @@ namespace UHFrameworkLite
                     LineView lineView = Instantiate(lineViewPrefab);
                     lineView.tactileLine = (TactileLine)shape;
                     return lineView.gameObject;
+                case TactilePoint point:
+                    PointView pointView = Instantiate(pointViewPrefab);
+                    pointView.tactilePoint = (TactilePoint)shape;
+                    return pointView.gameObject;
                 default:
                     Debug.LogError("Shape of type " + shape.GetType() + " is not associated with a view");
                     return null;
