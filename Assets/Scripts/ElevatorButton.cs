@@ -56,6 +56,9 @@ public class ElevatorButton : MonoBehaviour
         else if (!interactionButton.isPrimaryHovered && HoveredButton == this)
         {
             HoveredButton = null;
+            
+            // Stop playing braille
+            BrailleCharacter.Instance.StopBraille();
         }
 
         if (interactionButton.isPressed && PressedButton != this) {
