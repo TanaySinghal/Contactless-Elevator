@@ -33,6 +33,7 @@ public class ElevatorController : MonoBehaviourSingleton<ElevatorController>
 
     public void GoToFloor(int targetFloor) {
         if (!inTransit) {
+            Debug.Log("Going to floor " + targetFloor);
             StartCoroutine(TravelToFloor(targetFloor));
         }
         else {

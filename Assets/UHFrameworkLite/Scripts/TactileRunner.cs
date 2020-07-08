@@ -50,6 +50,7 @@ namespace UHFrameworkLite
         [SerializeField] CircleView circleViewPrefab;
         [SerializeField] LineView lineViewPrefab;
         [SerializeField] PointView pointViewPrefab;
+        [SerializeField] CylinderView cylinderViewPrefab;
         
         void Awake()
         {
@@ -172,7 +173,7 @@ namespace UHFrameworkLite
             switch (shape)
             {
                 case TactileCircle circle:
-                    CircleView circleView = Instantiate(circleViewPrefab);
+                    CylinderView circleView = Instantiate(cylinderViewPrefab);
                     circleView.tactileCircle = (TactileCircle)shape;
                     return circleView.gameObject;
                 case TactileLine line:

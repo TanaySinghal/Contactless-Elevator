@@ -54,3 +54,5 @@ MonoBehaviour:
     type: 3}
   pointViewPrefab: {fileID: 5457272122782157190, guid: aa31125b1a65cd749bd5a12b67feb653,
     type: 3}
+  cylinderViewPrefab: {fileID: 3425911574784596658, guid: 61ac1f83e7cb0d24fa02f201c464fa93,
+    type: 3}

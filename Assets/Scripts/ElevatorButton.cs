@@ -67,7 +67,6 @@ public class ElevatorButton : MonoBehaviour
             TactileRunner.Instance.AddShape(circleSensation);
 
             // GO TO THE FLOOR
-            Debug.Log("Going to floor " + floorNumber);
             ElevatorController.Instance.GoToFloor(floorNumber);
             PressedButton = this;
         }
