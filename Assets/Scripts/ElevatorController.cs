@@ -8,13 +8,38 @@ public class ElevatorController : MonoBehaviourSingleton<ElevatorController>
 {
     [SerializeField] Elevator_ButtonPanel_Contoller elevatorPanel;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip doorsOpening;
+    [SerializeField] AudioClip doorsClosing;
+
+    
+    [Header("You are on floor")]
+    [SerializeField] AudioClip onFloor1;
+    
+    [SerializeField] AudioClip onFloor2;
+    
+    [SerializeField] AudioClip onFloor3;
+    
+    [SerializeField] AudioClip onFloor4;
+    
+    [SerializeField] AudioClip onFloor5;
+    
+    
+    [Header("You are on floor")]
+    [SerializeField] AudioClip selectingFloor1;
+    
+    [SerializeField] AudioClip selectingFloor2;
+    
+    [SerializeField] AudioClip selectingFloor3;
+    
+    [SerializeField] AudioClip selectingFloor4;
+    
+    [SerializeField] AudioClip selectingFloor5;
+    
+
     int currFloor;
     public bool doorIsOpen;
     bool inTransit;
-
-    public System.Action OnDoorOpen;
-    
-    public System.Action OnDoorClose;
 
     void Start() {
         currFloor = 1;
@@ -61,6 +86,26 @@ public class ElevatorController : MonoBehaviourSingleton<ElevatorController>
             }
         }
 
+        switch (targetFloor) {
+            case 1:
+                audioSource.PlayOneShot(onFloor1);
+                break;
+            case 2:
+                audioSource.PlayOneShot(onFloor2);
+                break;
+            case 3:
+                audioSource.PlayOneShot(onFloor3);
+                break;
+            case 4:
+                audioSource.PlayOneShot(onFloor4);
+                break;
+            case 5:
+                audioSource.PlayOneShot(onFloor5);
+                break;
+            default:
+                break;
+        }
+
         yield return new WaitForSeconds(2f);
         Elevator_GlobalSystem.SFX.StopSFX(0);
         Elevator_GlobalSystem.SFX.PlayBing(0);
@@ -74,9 +119,7 @@ public class ElevatorController : MonoBehaviourSingleton<ElevatorController>
             Elevator_GlobalSystem.Doors.OpenAllDoorOfUnit(0);
             elevatorPanel.DrawArrow(false, false);
             doorIsOpen = true;
-            if (OnDoorOpen != null) {
-                OnDoorOpen();
-            }
+            audioSource.PlayOneShot(doorsOpening);
         }
     }
     
@@ -85,9 +128,34 @@ public class ElevatorController : MonoBehaviourSingleton<ElevatorController>
             Elevator_GlobalSystem.Doors.CloseAllDoorOfUnit(0);
             elevatorPanel.DrawArrow(false, false);
             doorIsOpen = false;
-            if (OnDoorClose != null) {
-                OnDoorClose();
-            }
+            audioSource.PlayOneShot(doorsClosing);
+        }
+    }
+
+    public void PlayAudioSelectingFloor(int num) {
+
+        if (audioSource.isPlaying) {
+            audioSource.Stop();
+        }
+
+        switch (num) {
+            case 1:
+                audioSource.PlayOneShot(selectingFloor1);
+                break;
+            case 2:
+                audioSource.PlayOneShot(selectingFloor2);
+                break;
+            case 3:
+                audioSource.PlayOneShot(selectingFloor3);
+                break;
+            case 4:
+                audioSource.PlayOneShot(selectingFloor4);
+                break;
+            case 5:
+                audioSource.PlayOneShot(selectingFloor5);
+                break;
+            default:
+                break;
         }
     }
 }

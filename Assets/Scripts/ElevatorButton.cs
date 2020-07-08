@@ -52,6 +52,9 @@ public class ElevatorButton : MonoBehaviour
             // Start playing braille
             BrailleCharacter.Instance.transform.position = transform.position - transform.forward * brailleDistance;
             BrailleCharacter.Instance.PlayBraille(floorNumber);
+
+            // Play audio
+            ElevatorController.Instance.PlayAudioSelectingFloor(floorNumber);
         }
         else if (!interactionButton.isPrimaryHovered && HoveredButton == this)
         {
