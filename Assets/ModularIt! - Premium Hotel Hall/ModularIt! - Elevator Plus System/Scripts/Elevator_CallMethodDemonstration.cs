@@ -23,6 +23,10 @@ public class Elevator_CallMethodDemonstration : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.Alpha0))
             Elevator_GlobalSystem.Doors.CloseAllDoorOfUnit(0); //Close All Door of Elevator[0] - CloseAllDoorOfUnit(int ElevatorID)
+        
+        
+        if(Input.GetKeyDown(KeyCode.Alpha9))
+            Elevator_GlobalSystem.Doors.OpenAllDoorOfUnit(0); //Close All Door of Elevator[0] - CloseAllDoorOfUnit(int ElevatorID)
 
         // Elevator_GlobalSystem.Doors.CloseAllDoorOfUnit(0); //Close All Door of Elevator[0] - CloseAllDoorOfUnit(int ElevatorID)
         // Elevator_GlobalSystem.Doors.CloseElevatorDoor(0); //Close inside Elevator Door of Elevator[0] - CloseElevatorDoor(int ElevatorID)
@@ -38,8 +42,8 @@ public class Elevator_CallMethodDemonstration : MonoBehaviour {
         ////  |
         ////  V
 
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-            Elevator_GlobalSystem.ButtonPanel.Demonstration(0, !Elevator_GlobalSystem.ButtonPanel.DemoActive(0)); // Demo active of Button Panel in Elevator[0] = !Demo active
+        // if (Input.GetKeyDown(KeyCode.Alpha9))
+        //     Elevator_GlobalSystem.ButtonPanel.Demonstration(0, !Elevator_GlobalSystem.ButtonPanel.DemoActive(0)); // Demo active of Button Panel in Elevator[0] = !Demo active
 
         // Elevator_GlobalSystem.ButtonPanel.Demonstration(0, !Elevator_GlobalSystem.ButtonPanel.DemoActive(0)); // Demo active of Button Panel in Elevator[0] = !Demo active
         // Elevator_GlobalSystem.ButtonPanel.Undraw(0); // Undraw all in Button Panel in Elevator[0] - Undraw(int ElevatorID)
@@ -54,51 +58,51 @@ public class Elevator_CallMethodDemonstration : MonoBehaviour {
         ////  |
         ////  V
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
-                Debug.LogWarning("Elevator Busy");
-            else
-                Elevator_GlobalSystem.Elevator.CallToStageSimulate(0, 1); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
+        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        // {
+        //     if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
+        //         Debug.LogWarning("Elevator Busy");
+        //     else
+        //         Elevator_GlobalSystem.Elevator.CallToStageSimulate(0, 1); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
 
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
-                Debug.LogWarning("Elevator Busy");
-            else
-                Elevator_GlobalSystem.Elevator.CallToStageSimulate(0, 2); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
-                Debug.LogWarning("Elevator Busy");
-            else
-                Elevator_GlobalSystem.Elevator.CallToStagePhysically(0, 1); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha2))
+        // {
+        //     if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
+        //         Debug.LogWarning("Elevator Busy");
+        //     else
+        //         Elevator_GlobalSystem.Elevator.CallToStageSimulate(0, 2); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha3))
+        // {
+        //     if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
+        //         Debug.LogWarning("Elevator Busy");
+        //     else
+        //         Elevator_GlobalSystem.Elevator.CallToStagePhysically(0, 1); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
 
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
-                Debug.LogWarning("Elevator Busy");
-            else
-                Elevator_GlobalSystem.Elevator.CallToStagePhysically(0, 2); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
-                Debug.LogWarning("Elevator Busy");
-            else
-                Elevator_GlobalSystem.Elevator.CallToStageNow(0, 1); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha4))
+        // {
+        //     if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
+        //         Debug.LogWarning("Elevator Busy");
+        //     else
+        //         Elevator_GlobalSystem.Elevator.CallToStagePhysically(0, 2); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha5))
+        // {
+        //     if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
+        //         Debug.LogWarning("Elevator Busy");
+        //     else
+        //         Elevator_GlobalSystem.Elevator.CallToStageNow(0, 1); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
 
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
-                Debug.LogWarning("Elevator Busy");
-            else
-                Elevator_GlobalSystem.Elevator.CallToStageNow(0, 2); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
-        }
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha6))
+        // {
+        //     if (Elevator_GlobalSystem.Elevator.ElevatorBusy(0)) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
+        //         Debug.LogWarning("Elevator Busy");
+        //     else
+        //         Elevator_GlobalSystem.Elevator.CallToStageNow(0, 2); // Call Elevator[0] to Stage[0+1] - CallToStage(int ElevatorID, int StageID+1)
+        // }
 
         // Elevator_GlobalSystem.Elevator.ElevatorBusy(0) // Check if the elevator can perform a new task - ElevatorBusy(int ElevatorID) : return true/false
         // Elevator_GlobalSystem.Elevator.CallToStageSimulate(0, 1); // Call Elevator[0] to Stage[0+1] - CallToStageSimulate(int ElevatorID, int StageID+1) Moving is simulated and elevator teleporn when simulation end

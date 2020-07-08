@@ -248,23 +248,25 @@ public class Elevator_UnitContoller : MonoBehaviour {
 
     public void PlaySFX(AudioClip _clip)
     {
+        AudioSource audioSource = ElevatorDoorController.gameObject.GetComponent<AudioSource>();
+
         if (_clip == Elevator_GlobalSystem.BingSFXstatic)
         {
-            ElevatorDoorController.gameObject.GetComponent<AudioSource>().loop = false;
-            ElevatorDoorController.gameObject.GetComponent<AudioSource>().PlayOneShot(_clip);
-            ElevatorDoorController.gameObject.GetComponent<AudioSource>().volume = Elevator_GlobalSystem.BingVolumeStatic;
+            audioSource.loop = false;
+            audioSource.PlayOneShot(_clip);
+            audioSource.volume = Elevator_GlobalSystem.BingVolumeStatic;
         }
         else if (_clip == Elevator_GlobalSystem.DoorSFXstatic)
         {
-            ElevatorDoorController.gameObject.GetComponent<AudioSource>().loop = false;
-            ElevatorDoorController.gameObject.GetComponent<AudioSource>().PlayOneShot(_clip);
-            ElevatorDoorController.gameObject.GetComponent<AudioSource>().volume = Elevator_GlobalSystem.DoorVolumeStatic;
+            audioSource.loop = false;
+            audioSource.PlayOneShot(_clip);
+            audioSource.volume = Elevator_GlobalSystem.DoorVolumeStatic;
         }
         else if (_clip == Elevator_GlobalSystem.MotorSFXstatic)
         {
-            ElevatorDoorController.gameObject.GetComponent<AudioSource>().loop = true;
-            ElevatorDoorController.gameObject.GetComponent<AudioSource>().Play();
-            ElevatorDoorController.gameObject.GetComponent<AudioSource>().volume = Elevator_GlobalSystem.MotorVolumeStatic;
+            audioSource.loop = true;
+            audioSource.Play();
+            audioSource.volume = Elevator_GlobalSystem.MotorVolumeStatic;
 
         }
     }

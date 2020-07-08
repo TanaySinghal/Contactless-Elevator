@@ -41,10 +41,10 @@ public class Elevator_GlobalSystem : MonoBehaviour {
 
     private void Start()
     {
-        for(int i = 0; i < Elevators.Length; i++)
-        {
-            Elevators[i].ChangeTargetStage(StartStage[i], true);
-        }
+        // for(int i = 0; i < Elevators.Length; i++)
+        // {
+        //     Elevators[i].ChangeTargetStage(StartStage[i], true);
+        // }
     }
 
     public class Doors

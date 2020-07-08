@@ -7,6 +7,8 @@ public class ButtonGenerator : MonoBehaviour
 
     [SerializeField] ElevatorButton button;
     [SerializeField] int numFloors = 5;
+    [SerializeField] Transform doorL;
+    [SerializeField] Transform doorR;
 
     List<ElevatorButton> buttons;
 
@@ -56,6 +58,27 @@ public class ButtonGenerator : MonoBehaviour
             }
             b.transform.localPosition = Vector3.Lerp(b.transform.localPosition, pos * ordinarySize, animationSpeed);
         }
+
+        // Deal with doors
+        float targetAbsZ;
+        if (ElevatorController.Instance.doorIsOpen) {
+            targetAbsZ = 0.1f;
+        }
+        else {
+            targetAbsZ = 0.04f;
+        }
+        
+        MoveDoor(doorL, -targetAbsZ);
+        MoveDoor(doorR, targetAbsZ);
+    }
+
+
+    void MoveDoor(Transform door, float targetZ) {
+        door.localPosition = Vector3.Lerp(
+            door.localPosition,
+            new Vector3(door.localPosition.x, door.localPosition.y, targetZ),
+            0.2f
+        );
     }
 
     float HeightFn(float x) {
@@ -70,5 +93,53 @@ public class ButtonGenerator : MonoBehaviour
         float clampedX = Mathf.Clamp(x, - Mathf.PI / 2, Mathf.PI / 2);
         float val = clampedX + 0.5f * Mathf.Sin(2f * clampedX);
         return 0.5f * val;
+    }
+    
+    bool leftDoorContact = false;
+    
+    bool rightDoorContact = false;
+    bool doorIsToggleable = true; // i.e. time
+
+    public void LeftDoorContactEnter() {
+        leftDoorContact = true;
+
+        if (rightDoorContact) {
+            ToggleDoor();
+        }
+    }
+    
+    public void LeftDoorContactExit() {
+        leftDoorContact = false;
+    }
+    
+    public void RightDoorContactEnter() {
+        rightDoorContact = true;
+        
+        if (leftDoorContact) {
+            ToggleDoor();
+        }
+    }
+    
+    public void RightDoorContactExit() {
+        rightDoorContact = false;
+    }
+
+    void ToggleDoor() {
+        if (doorIsToggleable) {
+            if (ElevatorController.Instance.doorIsOpen) 
+                ElevatorController.Instance.CloseDoor();
+            else
+                ElevatorController.Instance.OpenDoor();
+
+            StartCoroutine(MakeToggleableAgain());
+        }
+    }
+
+
+    // To reduce false positives
+    IEnumerator MakeToggleableAgain() {
+        doorIsToggleable = false;
+        yield return new WaitForSeconds(2f);
+        doorIsToggleable = true;
     }
 }

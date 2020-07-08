@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 2195195782582654612}
   - component: {fileID: 3178772154722024327}
   - component: {fileID: 8751407726299588025}
-  - component: {fileID: 885580427807568760}
+  - component: {fileID: 6828914094116859647}
   m_Layer: 0
   m_Name: Interaction Button
   m_TagString: Untagged
@@ -186,7 +186,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &885580427807568760
+--- !u!114 &6828914094116859647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,15 +195,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4854666061343802553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b02e2f8ae628ac4f9faca951fe12db4, type: 3}
+  m_Script: {fileID: 11500000, guid: 64610a583f24a95489a3018cf1580ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useHover: 0
-  usePrimaryHover: 0
-  defaultColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
-  suspendedColor: {r: 1, g: 0, b: 0, a: 1}
-  hoverColor: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  primaryHoverColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  defaultColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.5568628}
   pressedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &6218199128601975770
 GameObject:

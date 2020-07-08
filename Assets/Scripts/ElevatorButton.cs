@@ -65,6 +65,10 @@ public class ElevatorButton : MonoBehaviour
             // Play button haptics
             circleSensation.position = TactileRunner.Instance.transform.InverseTransformPoint(transform.position).ToUH();
             TactileRunner.Instance.AddShape(circleSensation);
+
+            // GO TO THE FLOOR
+            Debug.Log("Going to floor " + floorNumber);
+            ElevatorController.Instance.GoToFloor(floorNumber);
             PressedButton = this;
         }
         else if (!interactionButton.isPressed && PressedButton == this) {
