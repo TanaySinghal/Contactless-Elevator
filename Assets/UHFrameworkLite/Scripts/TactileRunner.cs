@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Ultrahaptics;
+using TMPro;
 
 namespace UHFrameworkLite
 {
@@ -40,6 +41,10 @@ namespace UHFrameworkLite
         Dictionary<TactileShape, GameObject> tactileShapes;
         readonly uint maxShapes = 4;
 
+        // Status
+        [SerializeField] TextMeshProUGUI deviceDetectedText;
+        [SerializeField] TextMeshProUGUI deviceEmittingText;
+
         [SerializeField] bool displayTactileShapes = false;
         [SerializeField] Color lowFrequencyColor;
         [SerializeField] int lowFrequencyValue = 50;
@@ -51,6 +56,24 @@ namespace UHFrameworkLite
         [SerializeField] LineView lineViewPrefab;
         [SerializeField] PointView pointViewPrefab;
         [SerializeField] CylinderView cylinderViewPrefab;
+
+        bool _deviceDetected;
+        bool DeviceDetected {
+            get { return _deviceDetected; }
+            set { 
+                _deviceDetected = value;
+                UpdateDeviceStatus();
+            }
+        }
+
+        bool _deviceEmitting;
+        bool DeviceEmitting {
+            get { return _deviceEmitting; }
+            set {
+                _deviceEmitting = value;
+                UpdateDeviceStatus();
+            }
+        }
         
         void Awake()
         {
@@ -67,12 +90,13 @@ namespace UHFrameworkLite
 
             // Set callback and start emitter (no need to pass object)
             _emitter.setEmissionCallback(MyEmitterCallback, null);
-            bool started = _emitter.start();
 
-            if (!started)
-            {
-                Debug.LogError("Could not start UltraHaptics TPS emitter. Connection status is " + _emitter.isConnected() + ".");
-            }
+            StartEmitting();
+        }
+
+        void StartEmitting() {
+            bool started = _emitter.start();
+            DeviceEmitting = started;
         }
 
         // Whenever an editor variable changes
@@ -88,13 +112,37 @@ namespace UHFrameworkLite
         void OnDisable()
         {
             _emitter.stop();
+            DeviceEmitting = false;
+        }
+
+        void Update() {
+            bool isConnected = _emitter.isConnected();
+            if (DeviceDetected != isConnected) {
+                DeviceDetected = isConnected;
+                if (isConnected) {
+                    StartEmitting();
+                }
+                else {
+                    DeviceEmitting = false;
+                }
+            }
         }
 
         // Ensure the emitter is immediately disposed when destroyed
         void OnDestroy()
         {
             _emitter.Dispose();
+            DeviceEmitting = false;
             _emitter = null;
+        }
+
+
+        void UpdateDeviceStatus() {
+            deviceDetectedText.text = "UltraHaptics Detected: " + DeviceDetected;
+            deviceDetectedText.color = DeviceDetected ? Color.white : Color.red;
+
+            deviceEmittingText.text = "UltraHaptics Emitting: " + DeviceEmitting;
+            deviceEmittingText.color = DeviceEmitting ? Color.white : Color.red;
         }
 
         public void AddShape(TactileShape shape)
@@ -102,6 +150,7 @@ namespace UHFrameworkLite
             if (!_emitter.isConnected())
             {
                 Debug.LogWarning("Failed to add shape. Tactile emitter is disconnected.");
+                DeviceEmitting = false;
                 return;
             }
 
@@ -126,12 +175,14 @@ namespace UHFrameworkLite
 
         public void RemoveShape(TactileShape shape)
         {
-            // Destroy the shape's view
-            GameObject view = tactileShapes[shape];
-            Destroy(view);
+            if (ContainsShape(shape)) {
+                // Destroy the shape's view
+                GameObject view = tactileShapes[shape];
+                Destroy(view);
 
-            // Remove the shape
-            tactileShapes.Remove(shape);
+                // Remove the shape
+                tactileShapes.Remove(shape);
+            }
         }
 
         public Color GetColorFromFrequency(float frequency)
