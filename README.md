@@ -1,9 +1,11 @@
 # Touchless Elevator
 By Tanay Singhal and Mahika Phutane
 
-Submission for [Developer Competition: Beyond Touchscreens](https://www.ultraleap.com/company/news/events/developer-competition-2020/).
-
 License: [Apache License, Version 2.0](LICENSE).
+
+Source code for our submission to the [Developer Competition: Beyond Touchscreens](https://www.ultraleap.com/company/news/events/developer-competition-2020/).
+
+See YouTube video here: https://www.youtube.com/watch?v=wYpcyULBc30.
 
 ![Image of a Dirty Elevator](Resources/full_setup.png)
 
