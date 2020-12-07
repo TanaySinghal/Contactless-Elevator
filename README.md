@@ -7,7 +7,7 @@ Source code for our submission to the [Developer Competition: Beyond Touchscreen
 
 See YouTube video here: https://www.youtube.com/watch?v=wYpcyULBc30.
 
-![Image of a Dirty Elevator](Resources/full_setup.png)
+![Image of Our Full Setup](Resources/full_setup_new.png)
 
 We present a futuristic concept for a touchless elevator with mid-air haptics that is accessible, intuitive, and fun. Informed by cutting-edge human-computer interaction (HCI) research, our design features touchless tactile braille (as well as audio feedback) for the visually impaired, intuitive gestures for opening/closing doors, and a lively button magnification on hover for improved accuracy. Our concept aims to drive the conversation on revolutionizing today’s physical interfaces with virtual tactile interfaces.
 
