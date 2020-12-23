@@ -1,4 +1,4 @@
-# Touchless Elevator
+# Contactless Elevator
 By Tanay Singhal and Mahika Phutane
 
 License: [Apache License, Version 2.0](LICENSE).
@@ -9,14 +9,14 @@ See YouTube video here: https://www.youtube.com/watch?v=wYpcyULBc30.
 
 ![Image of Our Full Setup](Resources/full_setup_new.png)
 
-We present a futuristic concept for a touchless elevator with mid-air haptics that is accessible, intuitive, and fun. Informed by cutting-edge human-computer interaction (HCI) research, our design features touchless tactile braille (as well as audio feedback) for the visually impaired, intuitive gestures for opening/closing doors, and a lively button magnification on hover for improved accuracy. Our concept aims to drive the conversation on revolutionizing today’s physical interfaces with virtual tactile interfaces.
+We present a futuristic concept for a contactless elevator with mid-air haptics that is accessible, intuitive, and fun. Informed by cutting-edge human-computer interaction (HCI) research, our design features contactless tactile braille (as well as audio feedback) for the visually impaired, intuitive gestures for opening/closing doors, and a lively button magnification on hover for improved accuracy. Our concept aims to drive the conversation on revolutionizing today’s physical interfaces with virtual tactile interfaces.
 
 ## How to Play
-Please download a build from [releases](https://github.com/TanaySinghal/Touchless-Elevator/releases). At the moment, we only have builds for Windows.
+Please download a build from [releases](https://github.com/TanaySinghal/Contactless-Elevator/releases). At the moment, we only have builds for Windows.
 
 ## How to Develop
 This was made using Unity 2019.1.14f1
-1. Clone this repository using `git@github.com:TanaySinghal/Touchless-Elevator.git`
+1. Clone this repository using `git@github.com:TanaySinghal/Contactless-Elevator.git`
 2. Open in Unity -- the source code is all yours now :)
 
 
