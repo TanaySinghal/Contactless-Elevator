@@ -11,7 +11,7 @@ public class BrailleCharacter : MonoBehaviourSingleton<BrailleCharacter>
     [SerializeField] bool debugMode = false;
 
     float showTime = 0.2f;
-    float pauseTime = 0.2f;
+    float pauseTime = 0.3f;
 
     List<int> NUMBER_1 = new List<int>{2, 3, 4, 5, 6};
     List<int> NUMBER_2 = new List<int>{2, 3, 4, 5, 6, 7};
